@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Build Directories
+msvc*
+mingw*
+make*
+linux*
+build
+.vscode
