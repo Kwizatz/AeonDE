@@ -12,8 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(library)
-add_subdirectory(sandbox)
-if(GTest_FOUND)
-    add_subdirectory(tests)
-endif()
+if(BUILD_SANDBOX)
+
+find_package(OpenGL REQUIRED)
+
+set(SANDBOX_SRCS Main.cpp Sandbox.cpp Windows.cpp)
+set(SANDBOX_HDRS Sandbox.h)
+
+add_executable(sandbox ${SANDBOX_SRCS} ${SANDBOX_HDRS})
+
+target_link_libraries(sandbox AeonDE ${OPENGL_gl_LIBRARY})
+
+endif(BUILD_SANDBOX)

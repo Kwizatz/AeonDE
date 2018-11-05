@@ -1,6 +1,6 @@
 ---
 Language: Cpp
-BasedOnStyle: None
+Standard: Cpp11
 AlignTrailingComments: true
 BreakBeforeBraces: Allman
 ColumnLimit: 0

@@ -19,12 +19,24 @@ enable_testing()
 enable_language(CXX)
 enable_language(C)
 
+option(BUILD_SANDBOX "Build graphical test/demo sandbox." ON)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -ggdb")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -fomit-frame-pointer")
+endif()
 
 include(code-format)
 include(gtest)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
+
 add_subdirectory(source)
 
 # VS Code must always be included last... 
