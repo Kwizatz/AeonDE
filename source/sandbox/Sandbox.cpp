@@ -18,6 +18,7 @@ limitations under the License.
 #include <gl/glext.h>
 #include <iostream>
 
+#include "OpenGLFunctions.h"
 #include "Sandbox.h"
 
 namespace AeonDE
@@ -25,6 +26,10 @@ namespace AeonDE
 Sandbox::Sandbox(int argc, char **argv)
 {
     PlatformDependentInitialize(argc, argv);
+    if (!LoadOpenGLAPI())
+    {
+        throw std::runtime_error("Error while loading OpenGL functions.");
+    }
     glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
